@@ -30,11 +30,14 @@ def get_league_seasons(unique_tournament_id: int):
     # print(req.status_code)
     return req.json()
 
-def get_league_last_matches(unique_tournament_id: int,season_id: int,page: int):
-    req = session.get(url=f'https://{domain}/api/basketball/tournament/{unique_tournament_id}/season/{season_id}/matches/last/{page}',
-                      timeout=300)
+
+def get_league_last_matches(unique_tournament_id: int, season_id: int, page: int):
+    req = session.get(
+        url=f'https://{domain}/api/basketball/tournament/{unique_tournament_id}/season/{season_id}/matches/last/{page}',
+        timeout=300)
     # print(req.status_code)
     return req.json()
+
 
 def get_match_statistics(match_id: int):
     req = session.get(url=f'https://{domain}/api/basketball/match/{match_id}/statistics',

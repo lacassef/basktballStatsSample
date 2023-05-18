@@ -1,16 +1,17 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
 # Press the green button in the gutter to run the script.
+import api
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # NBA id is 132
+    unique_tournament_id = 132
+
+    # getting the seasons array from the response
+    seasons = api.get_league_seasons(unique_tournament_id)['seasons']
+
+    # here we're just slicing the seasons array to the first 3 seasons (the returned result is in descending order)
+    # so we are getting the most recent seasons
+    for i in seasons[:3]:
+        season_id = i['id']
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
