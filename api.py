@@ -4,7 +4,7 @@ from requests.adapters import HTTPAdapter, Retry
 # API endpoints configuration
 
 your_key = "your_key"
-domain = "footapi7.p.rapidapi.com"
+domain = "basketapi1.p.rapidapi.com"
 
 session = requests.Session()
 
