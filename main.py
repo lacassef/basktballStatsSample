@@ -1,4 +1,3 @@
-# Press the green button in the gutter to run the script.
 import api
 
 if __name__ == '__main__':
@@ -34,6 +33,8 @@ if __name__ == '__main__':
 
             for event in events:
                 statistics = api.get_match_statistics(event["id"])
+                # We're just printing the stats, but you can do anything with the event and statistics like saving
+                # to your database
                 print(statistics)
 
             if has_next_page:
@@ -43,4 +44,3 @@ if __name__ == '__main__':
 
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
