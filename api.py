@@ -3,7 +3,7 @@ from requests.adapters import HTTPAdapter, Retry
 
 # API endpoints configuration
 
-your_key = "your_key"
+your_key = "your_api_key"
 domain = "basketapi1.p.rapidapi.com"
 
 session = requests.Session()
