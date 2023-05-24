@@ -60,3 +60,8 @@ def get_match_lineups(match_id: int):
     return req.json()
 
 
+def get_match(match_id: int):
+    req = session.get(url=f'https://{domain}/api/basketball/match/{match_id}',
+                      timeout=timeout_secs)
+    # print(req.status_code)
+    return req.json()

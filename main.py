@@ -33,6 +33,7 @@ if __name__ == '__main__':
 
             for event in events:
                 statistics = api.get_match_statistics(event["id"])
+
                 # We're just printing the stats, but you can do anything with the event and statistics like saving
                 # to your database
                 print(statistics)
