@@ -26,7 +26,7 @@ session.headers = {
 
 def get_league_seasons(unique_tournament_id: int):
     req = session.get(url=f'https://{domain}/api/basketball/tournament/{unique_tournament_id}/seasons',
-                      timeout=300)
+                      timeout=timeout_secs)
     # print(req.status_code)
     return req.json()
 
@@ -34,13 +34,29 @@ def get_league_seasons(unique_tournament_id: int):
 def get_league_last_matches(unique_tournament_id: int, season_id: int, page: int):
     req = session.get(
         url=f'https://{domain}/api/basketball/tournament/{unique_tournament_id}/season/{season_id}/matches/last/{page}',
-        timeout=300)
+        timeout=timeout_secs)
     # print(req.status_code)
     return req.json()
 
 
 def get_match_statistics(match_id: int):
     req = session.get(url=f'https://{domain}/api/basketball/match/{match_id}/statistics',
-                      timeout=300)
+                      timeout=timeout_secs)
     # print(req.status_code)
     return req.json()
+
+
+def get_pre_match_form(match_id: int):
+    req = session.get(url=f'https://{domain}/api/basketball/match/{match_id}/form',
+                      timeout=timeout_secs)
+    # print(req.status_code)
+    return req.json()
+
+
+def get_match_lineups(match_id: int):
+    req = session.get(url=f'https://{domain}/api/basketball/match/{match_id}/lineups',
+                      timeout=timeout_secs)
+    # print(req.status_code)
+    return req.json()
+
+
