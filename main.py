@@ -1,5 +1,58 @@
 import api
 
+
+def match_processing(event):
+    event_id = event["id"]
+
+    # Match stats
+    statistics = api.get_match_statistics(event_id)
+
+    # We're just printing the stats, but you can do anything with the event and statistics like saving
+    # to your database
+    print(statistics)
+
+    # Getting all other info
+    lineups = api.get_match_lineups(event_id)
+    form = api.get_pre_match_form(event_id)
+    match = api.get_match(event_id)
+
+    # Let's get all needed variables from match details
+
+    # Event start timestamp (in seconds)
+    startTimestamp = match["startTimestamp"]
+
+    # Team names
+    homeTeamName, awayTeamName = match["homeTeam"]["name"], match["awayTeam"]["name"]
+
+    # Home team scores
+    homeTeamFinalScore, homeTeamP1Score, homeTeamP2Score, homeTeamP3Score, homeTeamP4Score = match["homeScore"]["current"], match["homeScore"]["period1"],  match["homeScore"]["period2"],  match["homeScore"]["period3"],  match["homeScore"]["period4"]
+
+    try:
+        homeTeamOvertimeScore = match["homeScore"]["overtime"]
+    except:
+        #     No overtime logic
+        pass
+
+    # Away team scores
+    awayTeamFinalScore, awayTeamP1Score, awayTeamP2Score, awayTeamP3Score, awayTeamP4Score = match["awayScore"]["current"], match["awayScore"]["period1"], match["awayScore"]["period2"], match["awayScore"]["period3"], match["awayScore"]["period4"]
+
+    try:
+        awayTeamOvertimeScore = match["awayScore"]["overtime"]
+    except:
+        #     No overtime logic
+        pass
+
+    # Team standings
+    homeStandings, awayStandings = form["homeTeam"]["position"], form["awayTeam"]["position"]
+
+    # Teams players These variables are arrays and the players details are in player(item)["player"] and the stats
+    # are in player(item)["statistics"]
+    homePlayers, awayPlayers = lineups["home"]["players"], lineups["home"]["players"]
+
+
+
+
+
 if __name__ == '__main__':
     # NBA id is 132
     unique_tournament_id = 132
@@ -32,11 +85,8 @@ if __name__ == '__main__':
                 break
 
             for event in events:
-                statistics = api.get_match_statistics(event["id"])
-
-                # We're just printing the stats, but you can do anything with the event and statistics like saving
-                # to your database
-                print(statistics)
+                # We will use a function to process the match
+                match_processing(event)
 
             if has_next_page:
                 page += 1
