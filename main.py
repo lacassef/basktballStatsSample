@@ -25,7 +25,9 @@ def match_processing(event):
     homeTeamName, awayTeamName = match["homeTeam"]["name"], match["awayTeam"]["name"]
 
     # Home team scores
-    homeTeamFinalScore, homeTeamP1Score, homeTeamP2Score, homeTeamP3Score, homeTeamP4Score = match["homeScore"]["current"], match["homeScore"]["period1"],  match["homeScore"]["period2"],  match["homeScore"]["period3"],  match["homeScore"]["period4"]
+    homeTeamFinalScore, homeTeamP1Score, homeTeamP2Score, homeTeamP3Score, homeTeamP4Score = match["homeScore"][
+        "current"], match["homeScore"]["period1"], match["homeScore"]["period2"], match["homeScore"]["period3"], \
+    match["homeScore"]["period4"]
 
     try:
         homeTeamOvertimeScore = match["homeScore"]["overtime"]
@@ -34,7 +36,9 @@ def match_processing(event):
         pass
 
     # Away team scores
-    awayTeamFinalScore, awayTeamP1Score, awayTeamP2Score, awayTeamP3Score, awayTeamP4Score = match["awayScore"]["current"], match["awayScore"]["period1"], match["awayScore"]["period2"], match["awayScore"]["period3"], match["awayScore"]["period4"]
+    awayTeamFinalScore, awayTeamP1Score, awayTeamP2Score, awayTeamP3Score, awayTeamP4Score = match["awayScore"][
+        "current"], match["awayScore"]["period1"], match["awayScore"]["period2"], match["awayScore"]["period3"], \
+    match["awayScore"]["period4"]
 
     try:
         awayTeamOvertimeScore = match["awayScore"]["overtime"]
@@ -49,8 +53,8 @@ def match_processing(event):
     # are in player(item)["statistics"]
     homePlayers, awayPlayers = lineups["home"]["players"], lineups["home"]["players"]
 
-
-
+    # To save in dataabase I reccomend you to use csv.DictWriter.
+    # More details in: https://docs.python.org/3/library/csv.html
 
 
 if __name__ == '__main__':
@@ -92,6 +96,3 @@ if __name__ == '__main__':
                 page += 1
             else:
                 last_page = True
-
-
-
